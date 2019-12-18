@@ -29,7 +29,7 @@ void printArray(char arr[], int szArr)
 
 int main()
 {
-    char arr[] = "owenflaherty";
+    char arr[] = "ThisIsCountingSort";
     int n = sizeof(arr)/sizeof(arr[0]);
     printf("Unsorted array: \n");
     printArray(arr, n);

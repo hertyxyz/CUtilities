@@ -1,13 +1,14 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-void doSwap(int *xp, int *yp)
+void doSwap(char *xp, char *yp)
 {
     int t = *xp;
     *xp = *yp;
     *yp = t;
 }
 
-void doSort(int arr[], int n)
+void doSort(char arr[], int n)
 {
     int i, j;
     bool swapped;
@@ -26,17 +27,17 @@ void doSort(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int szArr)
+void printArray(char arr[], int szArr)
 {
     int i;
     for (i = 0; i < szArr; i++)
-        printf("%d ", arr[i]);
+        printf("%c ", arr[i]);
     printf("\n");
 }
 
 int main()
 {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    char arr[] = "ThisIsBubbleSort";
     int n = sizeof(arr)/sizeof(arr[0]);
     printf("Unsorted array: \n");
     printArray(arr, n);

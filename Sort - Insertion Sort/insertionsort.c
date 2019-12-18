@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void doSort(int arr[], int n)
+void doSort(char arr[], int n)
 {
     int i, j, key;
     for (i = 1; i < n; i++) {
@@ -16,17 +16,17 @@ void doSort(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int szArr)
+void printArray(char arr[], int szArr)
 {
     int i;
     for (i = 0; i < szArr; i++)
-        printf("%d ", arr[i]);
+        printf("%c ", arr[i]);
     printf("\n");
 }
 
 int main()
 {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    char arr[] = "ThisIsInsertionSort";
     int n = sizeof(arr)/sizeof(arr[0]);
     printf("Unsorted array: \n");
     printArray(arr, n);

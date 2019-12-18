@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void doMerge(int arr[], int l, int m, int r)
+void doMerge(char arr[], int l, int m, int r)
 {
     int i, j, k;
     int n1 = m - l + 1;
     int n2 = r - m;
-    int L[n1], R[n2];
+    char L[n1], R[n2];
     for (i = 0; i < n1; i++)
         L[i] = arr[l + i];
     for (j = 0; j < n2; j++)
@@ -41,7 +41,7 @@ void doMerge(int arr[], int l, int m, int r)
     }
 }
 
-void doSort(int arr[], int l, int r)
+void doSort(char arr[], int l, int r)
 {
     if (l < r)
     {
@@ -52,17 +52,17 @@ void doSort(int arr[], int l, int r)
     }
 }
 
-void printArray(int arr[], int szArr)
+void printArray(char arr[], int szArr)
 {
     int i;
     for (i = 0; i < szArr; i++)
-        printf("%d ", arr[i]);
+        printf("%c ", arr[i]);
     printf("\n");
 }
 
 int main()
 {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    char arr[] = "ThisIsMergeSort";
     int n = sizeof(arr)/sizeof(arr[0]);
     printf("Unsorted array: \n");
     printArray(arr, n);
