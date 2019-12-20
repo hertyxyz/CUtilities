@@ -9,6 +9,16 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <signal.h>
+#include <stdbool.h>
+
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 #define MAX_CLIENTS 10
 #define BUFFER_SIZE 2048
@@ -21,6 +31,7 @@ typedef struct {
     int connfd;
     int uid;
     char name[32];
+    bool isOp;
 } client_t;
 
 client_t *clients[MAX_CLIENTS];
@@ -280,7 +291,14 @@ void *handle_client(void *arg){
             }
         } else {
             /* Send message */
-            snprintf(buff_out, sizeof(buff_out), "[%s] %s\r\n", cli->name, buff_in);
+            printf(RED "[%s] %s" RESET, cli->name, buff_in);
+            fflush(stdout);
+            if (cli->isOp)
+            {
+                snprintf(buff_out, sizeof(buff_out), "\x1B[34m<%s>\x1B[0m %s\r\n" RESET, cli->name, buff_in);
+            } else {
+                snprintf(buff_out, sizeof(buff_out), "[%s] %s\r\n", cli->name, buff_in);
+            }
             sendMessage(buff_out, cli->uid);
         }
     }
@@ -350,6 +368,9 @@ int main(int argc, char *argv[]){
         client_t *cli = (client_t *)malloc(sizeof(client_t));
         cli->addr = cli_addr;
         cli->connfd = connfd;
+        cli->isOp = false;
+        if (uid == 10)
+            cli->isOp = true;
         cli->uid = uid++;
         sprintf(cli->name, "%d", cli->uid);
 
