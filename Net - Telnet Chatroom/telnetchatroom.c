@@ -291,14 +291,14 @@ void *handle_client(void *arg){
             }
         } else {
             /* Send message */
-            printf(RED "[%s] %s" RESET, cli->name, buff_in);
             fflush(stdout);
             if (cli->isOp)
             {
-                snprintf(buff_out, sizeof(buff_out), "\x1B[34m<%s>\x1B[0m %s\r\n" RESET, cli->name, buff_in);
+                snprintf(buff_out, sizeof(buff_out), "\x1B[34m<%s>\x1B[0m %s\r\n", cli->name, buff_in);
             } else {
                 snprintf(buff_out, sizeof(buff_out), "[%s] %s\r\n", cli->name, buff_in);
             }
+            printf(buff_out);
             sendMessage(buff_out, cli->uid);
         }
     }
